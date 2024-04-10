@@ -24,6 +24,9 @@ using namespace std;
 class AvlTree
 {
   public:
+    //Default Constructor
+    AvlTree( ) : root{ nullptr }
+      { }
     
     /**
      * Find the smallest item in the tree..
