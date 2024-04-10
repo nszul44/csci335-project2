@@ -1,3 +1,4 @@
+
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
 #include <list>
@@ -13,17 +14,33 @@ using namespace std;
 // ******************PUBLIC OPERATIONS*********************
 // void insert( x )       --> Insert x
 // void remove( x )       --> Remove x (unimplemented)
-// bool contains( x )     --> Return true if x is present
 // Comparable findMin( )  --> Return smallest item
 // Comparable findMax( )  --> Return largest item
 // boolean isEmpty( )     --> Return true if empty; else false
-// ******************ERRORS********************************
-// Throws UnderflowException as warranted
+// void makeEmpty( )      --> Remove all items
+
 
 
 class AvlTree
 {
   public:
+    AvlTree( ) : root{ nullptr }
+      { }
+    
+    AvlTree( const AvlTree & rhs ) : root{ nullptr }
+    {
+        root = clone( rhs.root );
+    }
+
+    AvlTree( AvlTree && rhs ) : root{ rhs.root }
+    {
+        rhs.root = nullptr;
+    }
+    
+    ~AvlTree( )
+    {
+        makeEmpty( );
+    }
     /**
      * Find the smallest item in the tree..
      */
@@ -41,20 +58,20 @@ class AvlTree
     }
 
     /**
-     * Returns true if x is found in the tree.
-     */
-    bool contains( const int & x ) const
-    {
-        return contains( x, root );
-    }
-
-    /**
      * Test if the tree is logically empty.
      * Return true if empty, false otherwise.
      */
     bool isEmpty( ) const
     {
         return root == nullptr;
+    }
+
+    /**
+     * Make the tree logically empty.
+     */
+    void makeEmpty( )
+    {
+        makeEmpty( root );
     }
 
     /**
@@ -188,7 +205,30 @@ class AvlTree
                 t = t->right;
         return t;
     }
+    /**
+     * Internal method to make subtree empty.
+     */
+    void makeEmpty( AvlNode * & t )
+    {
+        if( t != nullptr )
+        {
+            makeEmpty( t->left );
+            makeEmpty( t->right );
+            delete t;
+        }
+        t = nullptr;
+    }
 
+    /**
+     * Internal method to clone subtree.
+     */
+    AvlNode * clone( AvlNode *t ) const
+    {
+        if( t == nullptr )
+            return nullptr;
+        else
+            return new AvlNode{ t->element, clone( t->left ), clone( t->right ), t->height };
+    }
         // Avl manipulations
     /**
      * Return the height of node t or -1 if nullptr.
