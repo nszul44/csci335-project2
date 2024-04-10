@@ -43,27 +43,6 @@ class AvlTree
     {
         makeEmpty( );
     }
-
-    /**
-     * Deep copy.
-     */
-    AvlTree & operator=( const AvlTree & rhs )
-    {
-        AvlTree copy = rhs;
-        std::swap( *this, copy );
-        return *this;
-    }
-        
-    /**
-     * Move.
-     */
-    AvlTree & operator=( AvlTree && rhs )
-    {
-        std::swap( root, rhs.root );
-        
-        return *this;
-    }
-    
     /**
      * Find the smallest item in the tree..
      */
@@ -124,13 +103,6 @@ class AvlTree
         insert( x, root );
     }
      
-    /**
-     * Insert x into the tree; duplicates are ignored.
-     */
-    void insert( int && x )
-    {
-        insert( std::move( x ), root );
-    }
      
     /**
      * Remove x from the tree. Nothing is done if x is not found.
