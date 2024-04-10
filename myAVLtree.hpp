@@ -1,7 +1,6 @@
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
-
-
+#include <list>
 #include <vector>
 #include <algorithm>
 #include <iostream> 
