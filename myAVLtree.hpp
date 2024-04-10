@@ -17,7 +17,7 @@ using namespace std;
 // Comparable findMin( )  --> Return smallest item
 // Comparable findMax( )  --> Return largest item
 // boolean isEmpty( )     --> Return true if empty; else false
-// void makeEmpty( )      --> Remove all items
+
 
 
 
@@ -50,14 +50,6 @@ class AvlTree
     bool isEmpty( ) const
     {
         return root == nullptr;
-    }
-
-    /**
-     * Make the tree logically empty.
-     */
-    void makeEmpty( )
-    {
-        makeEmpty( root );
     }
 
     /**
@@ -191,30 +183,8 @@ class AvlTree
                 t = t->right;
         return t;
     }
-    /**
-     * Internal method to make subtree empty.
-     */
-    void makeEmpty( AvlNode * & t )
-    {
-        if( t != nullptr )
-        {
-            makeEmpty( t->left );
-            makeEmpty( t->right );
-            delete t;
-        }
-        t = nullptr;
-    }
 
-    /**
-     * Internal method to clone subtree.
-     */
-    AvlNode * clone( AvlNode *t ) const
-    {
-        if( t == nullptr )
-            return nullptr;
-        else
-            return new AvlNode{ t->element, clone( t->left ), clone( t->right ), t->height };
-    }
+    
         // Avl manipulations
     /**
      * Return the height of node t or -1 if nullptr.
