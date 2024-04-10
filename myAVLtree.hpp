@@ -17,8 +17,6 @@ using namespace std;
 // Comparable findMin( )  --> Return smallest item
 // Comparable findMax( )  --> Return largest item
 // boolean isEmpty( )     --> Return true if empty; else false
-// void makeEmpty( )      --> Remove all items
-// void printTree( )      --> Print tree in sorted order
 // ******************ERRORS********************************
 // Throws UnderflowException as warranted
 
@@ -26,23 +24,6 @@ using namespace std;
 class AvlTree
 {
   public:
-    AvlTree( ) : root{ nullptr }
-      { }
-    
-    AvlTree( const AvlTree & rhs ) : root{ nullptr }
-    {
-        root = clone( rhs.root );
-    }
-
-    AvlTree( AvlTree && rhs ) : root{ rhs.root }
-    {
-        rhs.root = nullptr;
-    }
-    
-    ~AvlTree( )
-    {
-        makeEmpty( );
-    }
     /**
      * Find the smallest item in the tree..
      */
@@ -74,25 +55,6 @@ class AvlTree
     bool isEmpty( ) const
     {
         return root == nullptr;
-    }
-
-    /**
-     * Print the tree contents in sorted order.
-     */
-    void printTree( ) const
-    {
-        if( isEmpty( ) )
-            cout << "Empty tree" << endl;
-        else
-            printTree( root );
-    }
-
-    /**
-     * Make the tree logically empty.
-     */
-    void makeEmpty( )
-    {
-        makeEmpty( root );
     }
 
     /**
@@ -227,61 +189,6 @@ class AvlTree
         return t;
     }
 
-
-    /**
-     * Internal method to test if an item is in a subtree.
-     * x is item to search for.
-     * t is the node that roots the tree.
-     */
-    bool contains( const int & x, AvlNode *t ) const
-    {
-        if( t == nullptr )
-            return false;
-        else if( x < t->element )
-            return contains( x, t->left );
-        else if( t->element < x )
-            return contains( x, t->right );
-        else
-            return true;    // Match
-    }
-
-    /**
-     * Internal method to make subtree empty.
-     */
-    void makeEmpty( AvlNode * & t )
-    {
-        if( t != nullptr )
-        {
-            makeEmpty( t->left );
-            makeEmpty( t->right );
-            delete t;
-        }
-        t = nullptr;
-    }
-
-    /**
-     * Internal method to print a subtree rooted at t in sorted order.
-     */
-    void printTree( AvlNode *t ) const
-    {
-        if( t != nullptr )
-        {
-            printTree( t->left );
-            cout << t->element << endl;
-            printTree( t->right );
-        }
-    }
-
-    /**
-     * Internal method to clone subtree.
-     */
-    AvlNode * clone( AvlNode *t ) const
-    {
-        if( t == nullptr )
-            return nullptr;
-        else
-            return new AvlNode{ t->element, clone( t->left ), clone( t->right ), t->height };
-    }
         // Avl manipulations
     /**
      * Return the height of node t or -1 if nullptr.
