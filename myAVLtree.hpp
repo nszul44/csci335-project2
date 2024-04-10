@@ -27,10 +27,6 @@ class AvlTree
     AvlTree( ) : root{ nullptr }
       { }
     
-    ~AvlTree( )
-    {
-        makeEmpty( );
-    }
     /**
      * Find the smallest item in the tree..
      */
