@@ -27,16 +27,6 @@ class AvlTree
     AvlTree( ) : root{ nullptr }
       { }
     
-    AvlTree( const AvlTree & rhs ) : root{ nullptr }
-    {
-        root = clone( rhs.root );
-    }
-
-    AvlTree( AvlTree && rhs ) : root{ rhs.root }
-    {
-        rhs.root = nullptr;
-    }
-    
     ~AvlTree( )
     {
         makeEmpty( );
