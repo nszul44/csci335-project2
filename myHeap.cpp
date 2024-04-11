@@ -47,7 +47,6 @@ void heapMedian(const std::vector<int> * instructions){
     }
     const auto t1_end = std::chrono::steady_clock::now();
     int t1 = std::chrono::duration <double, std::micro> (t1_end - t1_start).count();
-    std::cout << "Time for Heap Implementation: " << t1 << " microseconds" << std::endl;
     for(int i = 0; i < output.size(); i++){
         std::cout << output[i] << " ";
     }
