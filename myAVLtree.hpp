@@ -1,23 +1,28 @@
-
+/**
+ * @file myAVLTree.hpp
+ * @author Nicholas Szul
+ * @brief implementation of AVL Tree data structure and prototype for treeMedian
+ * @version 0.1
+ * @date 2024-04-10
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
 #include <list>
 #include <vector>
 #include <algorithm>
 #include <iostream> 
-using namespace std;
+#include <chrono>
 
 // AvlTree class
-// ******************PUBLIC OPERATIONS*********************
+// PUBLIC FUNCTIONS:
 // void insert( x )       --> Insert x
 // void remove( x )       --> Remove x (unimplemented)
 // Comparable findMin( )  --> Return smallest item
 // Comparable findMax( )  --> Return largest item
 // boolean isEmpty( )     --> Return true if empty; else false
-
-
-
-
 class AvlTree
 {
   public:
@@ -51,7 +56,7 @@ class AvlTree
     }
 
     /**
-     * Insert x into the tree; duplicates are ignored.
+     * Insert x into the tree
      */
     void insert( const int & x )
     {
@@ -251,5 +256,10 @@ class AvlTree
         rotateWithRightChild( k1 );
     }
 };
+/**
+ * @brief uses an Avl tree to output the medians based on the instructions
+ * 
+ * @param instructions 
+ */
 void treeMedian(const std::vector<int> *instructions);
 #endif

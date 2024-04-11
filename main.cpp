@@ -1,4 +1,17 @@
+/**
+ * @file main.cpp
+ * @author Nicholas Szul
+ * @brief Passes the data from the txt file to the implemented functions
+ * @version 0.1
+ * @date 2024-04-10
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include "myVector.hpp"
+#include "myList.hpp"
+#include "myHeap.hpp"
+#include "myAVLTree.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -6,7 +19,12 @@
 #include <iomanip>
 #include <fstream>
 #include <sstream>
-
+/**
+ * @brief converts a txt file to an accesible vector 
+ * 
+ * @param in_file 
+ * @return std::vector<int> 
+ */
 std::vector<int> instructions(const std::string& in_file){
     std::ifstream inputfile;
     inputfile.open(in_file);
@@ -34,6 +52,9 @@ std::vector<int> instructions(const std::string& in_file){
 
 int main(){
     std::vector<int>  test;
-     test = instructions("180999424.txt");
+     test = instructions("testinput.txt");
      vectorMedian(&test);
+     listMedian(&test);
+     heapMedian(&test);
+     treeMedian(&test);
 }
